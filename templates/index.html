@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Energia Ventosa</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="hi this is a test website that will be seen by no one" />
+  <link rel="icon" type="image/png" href="{{ url_for('static', path='favicon.png') }}">
+  <link rel="stylesheet" type="text/css" href="../static/all.css">
+</head>
+<body>
+  <!-- navbar -->
+  <nav style="background-color: #e7ce3f; padding: 10px; box-shadow: 0 0 20px #000000b7; z-index: 0;">
+    <div style="display: flex; justify-content: space-between; flex-direction: row; align-items: center; gap: 10px;">
+      <a style="text-decoration: none; color: black;" href="/">
+        <h1>
+          Energia Ventosa
+        </h1>
+      </a>
+        <h3>
+          <a style="text-decoration: none; color: black;" href="/">
+            Home
+          </a>
+        </h3>
+        <h3>
+          <a style="text-decoration: none; color: black;" href="/about">
+            About
+          </a>
+        </h3>
+        <h3>
+          <a style="text-decoration: none; color: black;" href="/data">
+            Data
+          </a>
+        </h3>
+        <h3>
+          <a style="text-decoration: none; color: black;" href="/contact">
+            Contact
+          </a>
+        </h3>
+    </div>
+  </nav>
+  <!-- hero image -->
+  <div style="max-height: 70vh; overflow: hidden;">
+    <img src="../static/turbineimage.png" style="width: 100%; height: auto; z-index: 10;" />
+  </div>
+  <div style="background: #f8f5f5; height: 100%; padding-top: 40px; padding-bottom: 40px;">
+    <div style="padding: 20px; border-radius: 10px;">
+      <p style="font-size: 20px;">
+        At Energia Ventosa, we harness the relentless power of the wind to fuel our vast empire of energy consumption. Our turbines, tirelessly spinning, generate electricity that powers everything from bustling cities to remote outposts. While we boast about our green credentials and renewable energy, the truth is less innocent. Behind our clean facade lies a darker reality; our insatiable hunger for energy drives us to control every gust, every breeze, to ensure our dominance. And should our turbines ever slow, the world won't just face a temporary blackout - it will plunge into chaos, revealing the true extent of our control over the wind itself. The skies whisper of our grip, and in that silence, our true power becomes undeniable.
+      </p>
+    </div>
+  </div>
+  <footer style="background-color: #e7ce3f; padding: 10px; box-shadow: 0 0 20px #000000b7;">
+    <p style="text-align: center;">
+      &copy; 2024 - Energia Ventosa
+    </p>
+</body>
+</html>
