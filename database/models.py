@@ -25,15 +25,11 @@ class ContactForm(Base):
     __tablename__ = 'contactforms'
 
     id = Column(Integer, primary_key=True, index=True)
-    machine_name = Column(String(50), nullable=False)
-    course = Column(String(50), nullable=False)
-    vmid = Column(Integer, nullable=False)
-    # can be defined later
-    ip_address = Column(String(50))
-    status = Column(String(50), default="undefined", nullable=False)
-    
-    # Define the relationship to User
-    # Environment can only have one user
+    name = Column(String(255), nullable=False)
+    email = Column(String(255), nullable=False)
+    phone = Column(String(255), nullable=False)
+    message = Column(String(500), nullable=False)
+
     users = relationship("User", back_populates="environments")
     user_id = Column(Integer, ForeignKey('users.id'))
     
