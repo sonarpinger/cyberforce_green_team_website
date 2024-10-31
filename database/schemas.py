@@ -25,3 +25,13 @@ def get_forms(db):
 def get_users(db):
   # dont return hashed passwords, filter out on backend
   return db.query(User).all()
+
+def delete_user(db, username):
+  db.query(User).filter(User.username == username).delete()
+  db.commit()
+  return
+
+def delete_all_forms(db):
+  db.query(ContactForm).delete()
+  db.commit()
+  return
