@@ -1,8 +1,8 @@
 from sqlalchemy import and_
 from .models import User, ContactForm
 
-def authenticate_user(db, username, hashed_password):
-  return db.query(User).filter(and_(User.username == username, User.password == hashed_password)).first()
+def get_hash_for_user(db, username):
+  return db.query(User).filter(User.username == username).first().password
 
 def create_user(db, username, hashed_password, is_admin=False):
   u = User(username=username, password=hashed_password, is_admin=is_admin)
@@ -21,3 +21,7 @@ def create_form(db, name, email, phone, message):
 
 def get_forms(db):
   return db.query(ContactForm).all()
+
+def get_users(db):
+  # dont return hashed passwords, filter out on backend
+  return db.query(User).all()

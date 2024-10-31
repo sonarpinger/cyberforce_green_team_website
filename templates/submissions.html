@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>About Us</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Energia Ventosa's landing page" />
+  <link rel="icon" type="image/png" href="{{ url_for('static', path='favicon.png') }}">
+  <link rel="stylesheet" type="text/css" href="../static/all.css">
+</head>
+<body>  <!-- navbar -->
+  <nav style="background-color: #e7ce3f; padding: 10px; box-shadow: 0 0 20px #000000b7; z-index: 0;">
+    <div style="display: flex; justify-content: space-between; flex-direction: row; align-items: center; gap: 10px; padding: 0px 40px">
+      <a style="text-decoration: none; color: black;" href="/">
+        <h1>
+          Energia Ventosa
+        </h1>
+      </a>
+        <h3>
+          <a style="text-decoration: none; color: black;" href="/">
+            Home
+          </a>
+        </h3>
+        <h3>
+          <a style="text-decoration: none; color: black;" href="/submissions">
+            Contact Submissions
+          </a>
+        </h3>
+        <h3>
+          <a style="text-decoration: none; color: black;" href="/accounts">
+            User Accounts
+          </a>
+        </h3>
+        <h3>
+          <a style="text-decoration: none; color: black;" href="/signout">
+            Signout
+          </a>
+        </h3>
+    </div>
+  </nav>
+
+  <div class="centering_container">
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <h1>Admin Dashboard</h1>
+    {% if submissions.length == 0 %}
+      <h3>No submissions yet!</h3>
+    {% else %}
+      <h3>Submissions</h3>
+    {% endif %}
+
+    {% for submission in submissions %}
+      <div class="contact" style="margin: 20px; padding: 20px 40px; border: 1px solid black; border-radius: 10px; display: flex; flex-direction: column; width: 100%; box-sizing: border-box;">
+        <h3>{{ submission.name }}</h3>
+        <p>{{ submission.email }}</p>
+        <p>{{ submission.phone }}</p>
+        <p>{{ submission.message }}</p>
+      </div>
+    {% endfor %}
+    </div>
+  </div>
+  {% if submissions.length == 3 %}
+  <footer style="position: absolute; bottom:0">
+  {% else %}
+  <footer>
+  {% endif %}
+    <p>
+      &copy; 2024 - Energia Ventosa
+    </p>
+  </footer>
+</body>
+</html>

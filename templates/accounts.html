@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>About Us</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Energia Ventosa's landing page" />
+  <link rel="icon" type="image/png" href="{{ url_for('static', path='favicon.png') }}">
+  <link rel="stylesheet" type="text/css" href="../static/all.css">
+</head>
+<body>  <!-- navbar -->
+  <nav style="background-color: #e7ce3f; padding: 10px; box-shadow: 0 0 20px #000000b7; z-index: 0;">
+    <div style="display: flex; justify-content: space-between; flex-direction: row; align-items: center; gap: 10px; padding: 0px 40px">
+      <a style="text-decoration: none; color: black;" href="/">
+        <h1>
+          Energia Ventosa
+        </h1>
+      </a>
+        <h3>
+          <a style="text-decoration: none; color: black;" href="/">
+            Home
+          </a>
+        </h3>
+        <h3>
+          <a style="text-decoration: none; color: black;" href="/submissions">
+            Contact Submissions
+          </a>
+        </h3>
+        <h3>
+          <a style="text-decoration: none; color: black;" href="/accounts">
+            User Accounts
+          </a>
+        </h3>
+        <h3>
+          <a style="text-decoration: none; color: black;" href="/signout">
+            Signout
+          </a>
+        </h3>
+    </div>
+  </nav>
+
+  <div class="centering_container">
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <h1>Admin Dashboard</h1>
+    {% if accounts.length == 0 %}
+      <h3>Something went wrong!</h3>
+    {% else %}
+      <h3>Accounts</h3>
+    {% endif %}
+
+    {% for account in accounts %}
+      <div class="contact" style="margin: 20px; padding: 20px 40px; border: 1px solid black; border-radius: 10px; display: flex; flex-direction: column; width: 100%">
+        <div style="display:flex; flex-direction: row; gap: 30px; justify-content:space-between; width: 100%">
+          <h3>Username: {{ account.username }}</h3>
+          {% if account.is_admin == 1 %}
+          <p style="align-self:end">Admin</p>
+          {% else %}
+          <p>User</p>
+          {% endif %}
+        </div>
+        <div style="display:flex; flex-direction: row; gap: 30px; justify-content:space-around; width: 100%">
+          <button style="padding: 5px 0px; background-color: #e7ce3f; width: 100px; align-self: center; border-radius: 20px">
+            <p style="font-size: 16px; margin: 0px; font-weight: 500;">
+              Delete
+            </p>
+          </button>
+          <button style="padding: 5px 0px; background-color: #e7ce3f; width: 100px; align-self: center; border-radius: 20px">
+            <p style="font-size: 16px; margin: 0px; font-weight: 500;">
+              Change Password
+            </p>
+          </button>
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+  </div>
+  {% if accounts.lenth == 3 %}
+  <footer style="position: absolute; bottom:0">
+  {% else %}
+  <footer>
+  {% endif %}
+    <p>
+      &copy; 2024 - Energia Ventosa
+    </p>
+  </footer>
+</body>
+</html>

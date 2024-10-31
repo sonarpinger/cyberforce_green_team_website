@@ -43,7 +43,7 @@
   <div style="max-height: 70vh; overflow: hidden;">
     <img src="../static/turbineimage.png" style="width: 100%; height: auto; z-index: 10;" />
   </div>
-  <div style="background: #f8f5f5; padding-top: 50px; padding-bottom: 10px;">
+  <div style="background: #f8f5f5; padding-top: 50px; padding-bottom: 50px;">
     <div style="padding: 20px; border-radius: 10px;">
       <p style="font-size: 20px;">
         At Energia Ventosa, we harness the relentless power of the wind to fuel our vast empire
@@ -58,20 +58,16 @@
       </p>
     </div>
   </div>
-  <div style="display: flex; flex-direction: row; align-content: center; justify-content: center; width: 100%; margin-bottom: 40px">
-    <div style="padding: 20px 40px; margin: 10px; border: 1px solid black; border-radius: 10px; display: flex; flex-direction: column">
+  {% if username %}
+  <div style="display: flex; flex-direction: row; padding: 20px 40px; gap: 40px; align-content: center; justify-content: center">
       <h2>
-        Login
+        You are logged in as: {{ username }}
       </h2>
-      <form id="login" action="/login" method="post" style="display: flex; flex-direction: column; gap: 10px">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required style="padding:10px; border-radius: 10px;">
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required style="padding:10px; border-radius: 10px;">
-        <button type="submit" style="padding: 20px 0px; background-color: #e7ce3f; width: 100px; align-self: center; border-radius: 20px">Login</button>
-    </div>
+      <a href="/signout" style="padding: 20px 0px; background-color: #e7ce3f; width: 100px; align-self: center; border-radius: 20px; align-items: center; text-decoration: none; text-align: center; color: black; font-size: 18px">
+        Signout
+      </a>
   </div>
-
+  {% endif %}
   <footer>
     <p>
       &copy; 2024 - Energia Ventosa
