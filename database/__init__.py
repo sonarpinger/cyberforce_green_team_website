@@ -1,7 +1,7 @@
 from sqlalchemy import *
 from sqlalchemy.orm import create_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
-from .models import User, Environment, Base
+from .models import User, ContactForm, Base
 from .schemas import *
   
 # engine = create_engine("mysql+pymysql://USRNAME:PASSWD127.0.0.1:3306/lx",

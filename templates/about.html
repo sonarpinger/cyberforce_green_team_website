@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>About Us</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Energia Ventosa's landing page" />
+  <link rel="icon" type="image/png" href="{{ url_for('static', path='favicon.png') }}">
+  <link rel="stylesheet" type="text/css" href="../static/all.css">
+</head>
+<body>  <!-- navbar -->
+  <nav style="background-color: #e7ce3f; padding: 10px; box-shadow: 0 0 20px #000000b7; z-index: 0;">
+    <div style="display: flex; justify-content: space-between; flex-direction: row; align-items: center; gap: 10px; padding: 0px 40px">
+      <a style="text-decoration: none; color: black;" href="/">
+        <h1>
+          Energia Ventosa
+        </h1>
+      </a>
+        <h3>
+          <a style="text-decoration: none; color: black;" href="/">
+            Home
+          </a>
+        </h3>
+        <h3>
+          <a style="text-decoration: none; color: black;" href="/about">
+            About
+          </a>
+        </h3>
+        <h3>
+          <a style="text-decoration: none; color: black;" href="/data">
+            Data
+          </a>
+        </h3>
+        <h3>
+          <a style="text-decoration: none; color: black;" href="/contact">
+            Contact
+          </a>
+        </h3>
+    </div>
+  </nav>
+  <div style="padding-top: 25vh; padding-bottom: 25vh; background: #f8f5f5;">
+    <img src="../static/EV_Logo_Horizontal.png" style="width: 100%; height: auto;" />
+  </div>
+  <footer>
+    <p>
+      &copy; 2024 - Energia Ventosa
+    </p>
+  </footer>
+</body>
+</html>

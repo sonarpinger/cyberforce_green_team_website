@@ -23,18 +23,18 @@
           </a>
         </h3>
         <h3>
-          <a style="text-decoration: none; color: black;" href="/about">
-            About
+          <a style="text-decoration: none; color: black;" href="/submissions">
+            Contact Submissions
           </a>
         </h3>
         <h3>
-          <a style="text-decoration: none; color: black;" href="/data">
-            Data
+          <a style="text-decoration: none; color: black;" href="/accounts">
+            User Accounts
           </a>
         </h3>
         <h3>
-          <a style="text-decoration: none; color: black;" href="/contact">
-            Contact
+          <a style="text-decoration: none; color: black;" href="/signout">
+            Signout
           </a>
         </h3>
     </div>
@@ -63,7 +63,7 @@
       <h2>
         Login
       </h2>
-      <form id="loginForm" action="/login" method="post" style="display: flex; flex-direction: column; gap: 10px">
+      <form id="login" action="/login" method="post" style="display: flex; flex-direction: column; gap: 10px">
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required style="padding:10px; border-radius: 10px;">
         <label for="password">Password:</label>
@@ -77,28 +77,25 @@
       &copy; 2024 - Energia Ventosa
     </p>
   </footer>
-  <script>
-    document.getElementById('loginForm').addEventListener('submit', async function(event) {
-      event.preventDefault();
-      const form = event.target;
-      const formData = new FormData(form);
-      const data = new URLSearchParams(formData);
-
-      try {
-        const response = await fetch('/login', {
-          method: 'POST',
-          body: data,
-        });
-        if (!response.ok) {
-          throw new Error('Login failed');
-        }
-        const result = await response.json();
-        console.log('Login successful');
-        window.location.href = result.redirect;
-        } catch (error) {
-          alert(error.message);
-        }
-    });
-  </script>
 </body>
+<script>
+  document.getElementById("login").addEventListener("submit", function(event) {
+    event.preventDefault();
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+    fetch("/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ username, password })
+    }).then(response => {
+      if (response.ok) {
+        console.log("Login successful!");
+      } else {
+        alert("Login failed!");
+      }
+    });
+  });
+</script>
 </html>
