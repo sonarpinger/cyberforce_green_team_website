@@ -12,13 +12,13 @@
   <!-- navbar -->
   <nav style="background-color: #e7ce3f; padding: 10px; box-shadow: 0 0 20px #000000b7; z-index: 0;">
     <div style="display: flex; justify-content: space-between; flex-direction: row; align-items: center; gap: 10px; padding: 0px 40px">
-      <a style="text-decoration: none; color: black;" href="/">
+      <a style="text-decoration: none; color: black;" href="/admin">
         <h1>
           Energia Ventosa
         </h1>
       </a>
         <h3>
-          <a style="text-decoration: none; color: black;" href="/">
+          <a style="text-decoration: none; color: black;" href="/admin">
             Home
           </a>
         </h3>
@@ -37,38 +37,24 @@
             Signout
           </a>
         </h3>
+        <h3 style="color: rgb(255, 255, 255); font-size: 26px; font-weight: 700;">
+          Admin
+        </h3>
     </div>
   </nav>
-  <!-- hero image -->
-  <div style="max-height: 70vh; overflow: hidden;">
-    <img src="../static/turbineimage.png" style="width: 100%; height: auto; z-index: 10;" />
-  </div>
-  <div style="background: #f8f5f5; padding-top: 50px; padding-bottom: 50px;">
-    <div style="padding: 20px; border-radius: 10px;">
-      <p style="font-size: 20px;">
-        At Energia Ventosa, we harness the relentless power of the wind to fuel our vast empire
-        of energy consumption. Our turbines, tirelessly spinning, generate electricity that powers
-        everything from bustling cities to remote outposts. While we boast about our green
-        credentials and renewable energy, the truth is less innocent. Behind our clean facade
-        lies a darker reality: our insatiable hunger for energy drives us to control every gust,
-        every breeze, to ensure our dominance. And should our turbines ever slow, the world
-        won't just face a temporary blackout - it will plunge into chaos, revealing the true extent
-        of our control over the wind itself. The skies whisper of our grip, and in that silence, our
-        true power becomes undeniable.
+  {% if username %}
+  <div style="display: flex; flex-direction: row;  align-content: center; justify-content: center">
+    <div style="display: flex; flex-direction: column; padding: 20px 40px; gap: 40px; align-content: center; justify-content: center">
+      <h2>
+        Hello, admin!
+      </h2>
+      <p>
+        This is the admin dashboard. Here you can view all contact submissions and user accounts.
       </p>
     </div>
   </div>
-  {% if username %}
-  <div style="display: flex; flex-direction: row; padding: 20px 40px; gap: 40px; align-content: center; justify-content: center">
-      <h2>
-        You are logged in as: {{ username }}
-      </h2>
-      <a href="/signout" style="padding: 20px 0px; background-color: #e7ce3f; width: 100px; align-self: center; border-radius: 20px; align-items: center; text-decoration: none; text-align: center; color: black; font-size: 18px">
-        Signout
-      </a>
-  </div>
   {% endif %}
-  <footer>
+  <footer style="position: absolute; bottom: 0"
     <p>
       &copy; 2024 - Energia Ventosa
     </p>

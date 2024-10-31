@@ -2,7 +2,8 @@
 
 import uvicorn
 from starlette.middleware.sessions import SessionMiddleware
-from fastapi import FastAPI, Request, Depends
+from starlette.middleware.base import BaseHTTPMiddleware
+from fastapi import FastAPI, Request, Depends, HTTPException
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from starlette.responses import HTMLResponse, RedirectResponse, JSONResponse
@@ -37,7 +38,11 @@ async def login(request: Request, session = Depends(obtain_session)):
   password = form['password']
   if bcrypt.checkpw(password.encode('utf-8'), db.get_hash_for_user(session, username)):
     request.session['user'] = username
-    return JSONResponse(content={'message': 'Successfully logged in', 'redirect': '/admin'}, status_code=200)
+    request.session['is_admin'] = db.is_admin(session, username)
+    if request.session['is_admin']:
+      return JSONResponse(content={'message': 'Successfully logged in', 'redirect': '/admin'}, status_code=200)
+    else:
+      return JSONResponse(content={'message': 'Successfully logged in', 'redirect': '/'}, status_code=200)
   return JSONResponse(content={'message': 'Invalid credentials'}, status_code=401)
 
 @app.get("/admin")
