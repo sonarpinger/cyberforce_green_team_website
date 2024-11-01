@@ -38,47 +38,47 @@
         </h3>
     </div>
   </nav>
-  <div style="display: flex; flex-direction: row; align-items: center; justify-content: center">
+  {% if username %}
+  <div style="display: flex; flex-direction: column; align-items: center; justify-content: center">
     <div class="data">
+      {% for turbine_farm in farm_data %}
       <div>
-        <h3>Section A</h3>
+        <h3>Turbine Farm {{turbine_farm['turbinefID']}}</h3>
         <img src="../static/turbine_cluster.png" style="width: 175px; height: 220px; align-self: center;" />
         <div>
           <h4>Turbine Group Data</h4>
-          <li>Speed: 10mph</li>
-          <li>RPM: 30</li>
+          <span style="display: flex; flex-direction: row; gap: 10px;">
+            <li>Turbine Status: </li>
+            {% if turbine_farm['turbineStatus'] == "up" %}
+            <p style="color: green; align-self: center; justify-self: start; margin: 0">{{turbine_farm['turbineStatus']}}</p>
+            {% else %}
+            <p style="color: red; align-self: center; justify-self: start; margin: 0">{{turbine_farm['turbineStatus']}}</p>
+            {% endif %}
+          </span>
+          <span style="display: flex; flex-direction: row; gap: 10px;">
+            <li>Turbine Direction: </li>
+            <p style="color: green; align-self: center; justify-self: start; margin: 0">{{turbine_farm['turbineDirection']}}</p>
+          </span>
+          <span style="display: flex; flex-direction: row; gap: 10px;">
+            <li>Turbine Generation: </li>
+            <p style="color: green; align-self: center; justify-self: start; margin: 0">{{turbine_farm['turbineGeneration']}}</p>
+          </span>
         </div>
       </div>
-      <div>
-        <h3>Section B</h3>
-        <img src="../static/turbine_cluster.png" style="width: 175px; height: 220px; align-self: center;" />
-        <div>
-          <h4>Turbine Group Data</h4>
-          <li>Speed: 10mph</li>
-          <li>RPM: 30</li>
-        </div>
-      </div>
-      <div>
-        <h3>Section C</h3>
-        <img src="../static/turbine_cluster.png" style="width: 175px; height: 220px; align-self: center;" />
-        <div>
-          <h4>Turbine Group Data</h4>
-          <li>Speed: 10mph</li>
-          <li>RPM: 30</li>
-        </div>
-      </div>
-      <div>
-        <h3>Section D</h3>
-        <img src="../static/turbine_cluster.png" style="width: 175px; height: 220px; align-self: center;" />
-        <div>
-          <h4>Turbine Group Data</h4>
-          <li>Speed: 10mph</li>
-          <li>RPM: 30</li>
-        </div>
-      </div>
+      {% endfor %}
     </div>
   </div>
+  {% else %}
+  <div style="display: flex; flex-direction: column; align-items: center; justify-content: center">
+    <h1>Unauthorized Access</h1>
+    <p>You are not authorized to view this page. Please log in to view this page.</p>
+  </div>
+  {% endif %}
+  {% if username %}
   <footer>
+  {% else %}
+  <footer style="position: absolute; bottom:0">
+  {% endif %}
     <p>
       &copy; 2024 - Energia Ventosa
     </p>

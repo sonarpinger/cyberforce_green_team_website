@@ -1,24 +1,17 @@
 from sqlalchemy import *
 from sqlalchemy.orm import create_session, sessionmaker
+from sqlalchemy.schema import Table, MetaData
 from sqlalchemy.ext.declarative import declarative_base
-from .models import User, ContactForm, Base
-from .schemas import *
-  
-# engine = create_engine("mysql+pymysql://USRNAME:PASSWD127.0.0.1:3306/lx",
-#     pool_size=20,
-#     max_overflow=10,
-#     pool_pre_ping=True,
-#     pool_recycle=3600,
-#     pool_timeout=30,
-# )
+from config import settings
 
-engine = create_engine("sqlite:///database.db", pool_size=20, max_overflow=10, pool_pre_ping=True, pool_recycle=3600, pool_timeout=30)
+engine = create_engine(f"mysql+mysqlconnector://{settings.DB_USER}:{settings.DB_PASSWORD.get_secret_value()}@{settings.DB_HOST}/{settings.DB_NAME}")
+metadata = MetaData()
+metadata.reflect(bind=engine)
 
-#reset the database
-# Base.metadata.drop_all(engine)
+Base = declarative_base()
 
-# Create the tables
-Base.metadata.create_all(engine)
+class TurbineFarm(Base):
+  __table__ = Table('turbine_farm', metadata, autoload=True)
 
 # # Create a Session
 Session = sessionmaker(bind=engine, autocommit=False)

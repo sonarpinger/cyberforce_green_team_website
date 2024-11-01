@@ -12,6 +12,7 @@ class User(Base):
     # hashed passwd
     password = Column(String(60), nullable=False)
     is_admin = Column(Boolean, default=False)
+    is_flagged = Column(Boolean, default=False)
 
 class ContactForm(Base):
     __tablename__ = 'contactforms'

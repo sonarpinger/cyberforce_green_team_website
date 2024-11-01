@@ -59,15 +59,17 @@
           {% endif %}
         </div>
         <div style="display:flex; flex-direction: row; gap: 30px; justify-content:space-around; width: 100%">
-          <button style="padding: 5px 0px; background-color: #e7ce3f; width: 100px; align-self: center; border-radius: 20px">
-            <p style="font-size: 16px; margin: 0px; font-weight: 500;">
-              Delete
-            </p>
-          </button>
-          <button style="padding: 5px 0px; background-color: #e7ce3f; width: 100px; align-self: center; border-radius: 20px">
-            <p style="font-size: 16px; margin: 0px; font-weight: 500;">
-              Change Password
-            </p>
+          {% if account.is_flagged == 1 %}
+          <img src="../static/flag.svg" style="width: 20px; height: 20px; align-self: center; justify-self: start; margin: 0px" />
+          {% else %}
+          <div style="width: 20px; height: 20px; align-self: center; justify-self: start; margin: 0px"></div>
+          {% endif %}
+          <button id="flag_{{account.username}}" style="padding: 5px 0px; background-color: #e7ce3f; width: 100px; align-self: center; border-radius: 20px; font-size: 16px; margin: 0px; font-weight: 500;">
+            {% if account.is_flagged == 1 %}
+            Unflag
+            {% else %}
+            Flag
+            {% endif %}
           </button>
         </div>
       </div>
@@ -83,5 +85,23 @@
       &copy; 2024 - Energia Ventosa
     </p>
   </footer>
+  <script>
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach(button => {
+      button.addEventListener('click', async (e) => {
+        const username = e.target.id.split('_')[1];
+        const response = await fetch(`/flag/${username}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+        const data = await response.json();
+        if (response.ok) {
+          window.location.reload();
+        }
+      });
+    });
+  </script>
 </body>
 </html>
