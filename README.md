@@ -1,2 +1,2 @@
-# ccdc_green_team_website
-CCDC Green Team website
+# cyberforce_green_team_website
+CyberForce Green Team website
